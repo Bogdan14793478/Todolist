@@ -5,6 +5,8 @@ function TodoList ({
     tasks,
     addTask,
     removeItem,
+    upTask,
+    downTask,
 }) {
 
 return (
@@ -12,20 +14,26 @@ return (
         {tasks.map((task, index) => {
             let isFirst = index === 0;
             let isLast = index === tasks.length - 1;
-            return (
-                <div key={task.id}>
-                    <p>{task.message}</p>
-                    <div style={{ paddingLeft: "30px" }}>
+        return (
+          <div key={task.id}>
+            <p>{task.message}</p>
+            <div style={{ paddingLeft: "30px" }}>
                         <Head 
                         task={task}
                         addTask={addTask}
-                        removeItem={removeItem}
                         parentId={task.id}
+                        removeItem={removeItem}
+                        upTask={upTask}
+                        downTask={downTask}
+                        isFirst={isFirst}
+                        isLast={isLast}
                         />
                         <TodoList 
-                        tasks={tasks.children}
+                        tasks={task.children}
                         addTask={addTask}
                         removeItem={removeItem}
+                        upTask={upTask}
+                        downTask={downTask}
                         />
                     </div>
                 </div>
